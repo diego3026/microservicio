@@ -102,7 +102,7 @@ public class BookServiceImpl implements BookService {
     }
 
     private boolean checkCustomerExists(UUID customerId) {
-        String url = "http://localhost:8081/api/v1/customer/getCustomerById/" + customerId;
+        String url = "http://localhost:8083/api/v1/customer/getCustomerById/" + customerId;
         try {
             ResponseEntity<CustomerDTO> response = restTemplate.getForEntity(url, CustomerDTO.class);
             return response.getStatusCode().is2xxSuccessful() && response.getBody() != null;

@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: car-inventory-service
+          uri: lb://car-inventory-service
+          predicates:
+            - Path=/api/v1/car/**
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1/booking/**
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/v1/payment/**
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/api/v1/customer/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

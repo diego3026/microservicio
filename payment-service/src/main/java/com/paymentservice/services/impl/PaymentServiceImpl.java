@@ -64,8 +64,8 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private boolean updateBookStatus(RequestPaymentDto requestPaymentDto) throws JSONException {
-        String url = "http://localhost:8080/api/v1/booking/getBookingById/" + requestPaymentDto.getBooking_id();
-        String process_payment = "http://localhost:8080/api/v1/booking/updateStatus/" + requestPaymentDto.getBooking_id();
+        String url = "http://localhost:8081/api/v1/booking/getBookingById/" + requestPaymentDto.getBooking_id();
+        String process_payment = "http://localhost:8081/api/v1/booking/updateStatus/" + requestPaymentDto.getBooking_id();
 
         ResponseEntity<BookingDto> bookingResponseEntity =
                 restTemplate.getForEntity(url, BookingDto.class);
@@ -100,7 +100,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private boolean checkBook(UUID bookingId) {
-        String url = "http://localhost:8080/api/v1/booking/getBookingById/" + bookingId;
+        String url = "http://localhost:8081/api/v1/booking/getBookingById/" + bookingId;
         try {
             ResponseEntity<BookingDto> response = restTemplate.getForEntity(url, BookingDto.class);
             return response.getStatusCode().is2xxSuccessful() && response.getBody() != null

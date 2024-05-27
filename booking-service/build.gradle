@@ -43,6 +43,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'io.micrometer:micrometer-registry-prometheus'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.3'
 }
 
 dependencyManagement {

@@ -40,7 +40,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.2.1'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.3'
 }
 

@@ -41,10 +41,10 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1234
     ports:
-      - "5432:5432"
+      - "5434:5434"
     expose:
-      - 5432
-    command: -p 5432
+      - 5434
+    command: -p 5434
 
   ### Posgres database for Car Inventory
   db-paymentservice:

@@ -30,6 +30,10 @@ spring:
           uri: lb://customer-service
           predicates:
             - Path=/api/v1/customer/**
+    openfeign:
+      oauth2:
+        enabled: true
+        clientRegistrationId: okta
 
 logging:
   level:
@@ -37,6 +41,7 @@ logging:
 
 okta:
   oauth2:
-    client-id: 5tppUjYQumrjnkE1EJyB6RVtyue3huap
-    client-secret: A_37IkzKjWn39H6YwaRjejddj4HAOo1-uDviOl3N-RuGWaGdZugh7PFayp8Hjm3t
-    issuer: https://dev-4ovrmt0auyizzkjn.us.auth0.com/
+    client-id: CBwt9kKmcJYQqyl6cegmkgfrIkrK4mUM
+    client-secret: QxAIjWIAIwbg8rNkFUVQe5e7s_8ZJJC73LToxoA3c35Gk21Wfj_eKWJLPiUboI4g
+    issuer: https://dev-0e8jpd5zontmpora.us.auth0.com/
+    audience: ${okta.oauth2.issuer}/api/v2/

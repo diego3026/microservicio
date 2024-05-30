@@ -19,7 +19,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    @Value("${okta.oauth2.audience}")
+    @Value("${okta.oauth2.audience:}")
     private String audience;
 
     private final ClientRegistrationRepository clientRegistrationRepository;
@@ -39,7 +39,6 @@ public class SecurityConfiguration {
                                 )
                         )
                 )
-                .oauth2ResourceServer(jwt -> jwt.jwt(withDefaults()))
                 .logout(logout -> logout.logoutSuccessHandler(logoutSuccessHandler()));
         return http.build();
     }
@@ -56,8 +55,7 @@ public class SecurityConfiguration {
         return authorizationRequestResolver;
     }
 
-    private Consumer<OAuth2AuthorizationRequest.Builder>
-    authorizationRequestCustomizer() {
+    private Consumer<OAuth2AuthorizationRequest.Builder> authorizationRequestCustomizer() {
         return customizer -> customizer
                 .additionalParameters(params -> params.put("audience", audience));
     }

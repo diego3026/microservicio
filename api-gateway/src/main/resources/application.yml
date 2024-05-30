@@ -5,14 +5,19 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+    fetch-registry: false
+    register-with-eureka: false
 
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - TokenRelay
       routes:
         - id: car-inventory-service
           uri: lb://car-inventory-service
@@ -44,4 +49,4 @@ okta:
     client-id: CBwt9kKmcJYQqyl6cegmkgfrIkrK4mUM
     client-secret: QxAIjWIAIwbg8rNkFUVQe5e7s_8ZJJC73LToxoA3c35Gk21Wfj_eKWJLPiUboI4g
     issuer: https://dev-0e8jpd5zontmpora.us.auth0.com/
-    audience: ${okta.oauth2.issuer}/api/v2/
+    audience: https://dev-0e8jpd5zontmpora.us.auth0.com/api/v2/
